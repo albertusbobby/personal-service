@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: personal-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/personal
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: false
