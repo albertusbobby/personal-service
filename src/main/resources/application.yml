@@ -3,7 +3,7 @@ spring:
     name: personal-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/personal
+    url: jdbc:postgresql://localhost:5432/app_db
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -11,3 +11,6 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: false
+    properties:
+      hibernate:
+        default_schema: personal
