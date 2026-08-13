@@ -2,3 +2,7 @@ spring:
   datasource:
     username: personal
     password: personal123
+  jpa:
+    properties:
+      hibernate:
+        default_schema: personal

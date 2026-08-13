@@ -16,6 +16,19 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: false
-    properties:
-      hibernate:
-        default_schema: personal
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      show-details: when-authorized
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  prometheus:
+    metrics:
+      export:
+        enabled: true
