@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: personal-service
+  labels:
+    app: personal-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: personal-service
+  template:
+    metadata:
+      labels:
+        app: personal-service
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/personal-service/actuator/prometheus"
+        prometheus.io/port: "8080"
+    spec:
+      serviceAccountName: personal-service
+      containers:
+        - name: personal-service
+          image: personal-service:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "personal-service"
+            - name: SPRING_CONFIG_ADDITIONAL_LOCATION
+              value: "file:/config/"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: personal-service-common-secret
+                  key: REDIS_PASSWORD
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: personal-service-secret
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: personal-service-secret
+                  key: DB_PASSWORD
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config
+              readOnly: true
+          readinessProbe:
+            httpGet:
+              path: /personal-service/actuator/health
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /personal-service/actuator/health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 15
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: 500m
+              memory: 1Gi
+      volumes:
+        - name: config-volume
+          projected:
+            sources:
+              - configMap:
+                  name: personal-service-common-config
+              - configMap:
+                  name: personal-service-config

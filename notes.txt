@@ -1,0 +1,4 @@
+- baru buat initial struktur buat deployment microservice
+- nanti mau buat sampe ada replica
+- dari sisi yml lagi buat struktur variabel biar yml di repo dan yml buat kubernetes hampir mirip.
+- yang baru dibuat adalah yml terpisah untuk hostname2 tech stack seperti zipkin, database dan redis
