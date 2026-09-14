@@ -1,0 +1,11 @@
+1. Java, Maven, Git, IntelliJ
+2. Docker → PostgreSQL + Redis (docker compose)
+3. Prometheus + Grafana (docker compose) → integrasi Spring Boot
+4. ELK + Elastic APM (docker compose)
+5. gRPC spring boot
+6. Minikube → kubectl basic
+7. Deploy Prometheus + Grafana di Minikube
+8. MongoDB (docker compose)
+
+posisi sekarang (14-sept-26): nomor 3 sudah tapi microservice masih di local
+lagi prepare deployment ke docker
