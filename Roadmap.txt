@@ -1,6 +1,6 @@
 1. Java, Maven, Git, IntelliJ
 2. Docker → PostgreSQL + Redis (docker compose)
-3. Prometheus + Grafana (docker compose) → integrasi Spring Boot
+3. Prometheus + Grafana (docker compose) → integrasi Spring Boot -> nanti coba pelajarin filtering grafana
 4. ELK + Elastic APM (docker compose)
 5. gRPC spring boot
 6. Minikube → kubectl basic
